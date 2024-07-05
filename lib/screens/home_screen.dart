@@ -48,9 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       questionIndex++;
       isTrue ? trueAnswersCount++ : trueAnswersCount;
     });
-    print(isTrue);
   }
-
   void restart() {
     setState(() {
       questionIndex = 0;
