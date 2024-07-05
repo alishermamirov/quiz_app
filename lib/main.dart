@@ -57,45 +57,61 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Quiz"),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(answersAndQuestions[questionIndex]["question"]),
-            ElevatedButton(
-                onPressed: () {
-                  nextQustion(answersAndQuestions[questionIndex]["answers"][0]
-                      ["isTrue"]);
-                },
-                child: Text(answersAndQuestions[questionIndex]["answers"][0]
-                    ["answer"])),
-            ElevatedButton(
-                onPressed: () {
-                  nextQustion(answersAndQuestions[questionIndex]["answers"][1]
-                      ["isTrue"]);
-                },
-                child: Text(answersAndQuestions[questionIndex]["answers"][1]
-                    ["answer"])),
-            ElevatedButton(
-                onPressed: () {
-                  nextQustion(answersAndQuestions[questionIndex]["answers"][2]
-                      ["isTrue"]);
-                },
-                child: Text(answersAndQuestions[questionIndex]["answers"][2]
-                    ["answer"])),
-            ElevatedButton(
-                onPressed: () {
-                  nextQustion(answersAndQuestions[questionIndex]["answers"][3]
-                      ["isTrue"]);
-                },
-                child: Text(answersAndQuestions[questionIndex]["answers"][3]
-                    ["answer"])),
-          ],
-        ),
-      ),
+          appBar: AppBar(
+            title: Text("Quiz"),
+          ),
+          body: questionIndex < answersAndQuestions.length
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(answersAndQuestions[questionIndex]["question"]),
+                    ElevatedButton(
+                        onPressed: () {
+                          nextQustion(answersAndQuestions[questionIndex]
+                              ["answers"][0]["isTrue"]);
+                        },
+                        child: Text(answersAndQuestions[questionIndex]
+                            ["answers"][0]["answer"])),
+                    ElevatedButton(
+                        onPressed: () {
+                          nextQustion(answersAndQuestions[questionIndex]
+                              ["answers"][1]["isTrue"]);
+                        },
+                        child: Text(answersAndQuestions[questionIndex]
+                            ["answers"][1]["answer"])),
+                    ElevatedButton(
+                        onPressed: () {
+                          nextQustion(answersAndQuestions[questionIndex]
+                              ["answers"][2]["isTrue"]);
+                        },
+                        child: Text(answersAndQuestions[questionIndex]
+                            ["answers"][2]["answer"])),
+                    ElevatedButton(
+                        onPressed: () {
+                          nextQustion(answersAndQuestions[questionIndex]
+                              ["answers"][3]["isTrue"]);
+                        },
+                        child: Text(answersAndQuestions[questionIndex]
+                            ["answers"][3]["answer"])),
+                  ],
+                )
+              : Center(
+                  child: Column(
+                    children: [
+                      Text("Natija"),
+                      Text("${trueAnswersCount}/${answersAndQuestions.length}"),
+                      ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              questionIndex = 0;
+                              trueAnswersCount = 0;
+                            });
+                          },
+                          child: Text("restart"))
+                    ],
+                  ),
+                )),
     );
   }
 }
